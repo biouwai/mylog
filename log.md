@@ -1,6 +1,8 @@
 # 记录
 
-## 初始化
+## 一、初始化
+
+### 初始化
 
 1. koa2 -e Tieba
 2. npm i
@@ -8,14 +10,14 @@
 4. npm i cross-env ---> cross-env NODE_ENV=dev/production
 5. 调整项目结构
 
-## 创建数据库
+### 创建数据库
 
 1. 建库 Tieba
 2. 建表 users
 3. 外键 user
 4. 联表查询
 
-## sequelize
+### sequelize
 
 帮助简化操作数据库操作
 
@@ -66,10 +68,12 @@ User.hasMany(Blog, {
 4. 项目
    npm i sequelize mysql2 -save
 
-## eslint
+### eslint
 
 1. npm i eslint babel-eslint --save
 2. .eslingtsrc.json 文件写配置
 3. npm i pre-commit --save-dev // 不符合规范不允许提交
 
-## inspect 调试
+### inspect 调试
+
+### 404 页面
