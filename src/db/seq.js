@@ -5,7 +5,7 @@
 
 const Sequelize = require("sequelize");
 const { MYSQL_CONF } = require("../conf/db");
-const { isProd } = require("../utils/env");
+const { isProd, isTest } = require("../utils/env");
 
 const { host, user, password, database } = MYSQL_CONF;
 const conf = {
@@ -14,7 +14,7 @@ const conf = {
 };
 
 // 测试环境，少打印
-if (Test) {
+if (isTest) {
   conf.logging = () => {};
 }
 

@@ -15,7 +15,7 @@ let MYSQL_CONF = {
   user: "root",
   password: "yxw12345",
   port: "3306",
-  database: "tieba",
+  database: "mylog",
 };
 
 if (isProd) {
@@ -31,7 +31,7 @@ if (isProd) {
     user: "root",
     password: "yxw12345",
     port: "3306",
-    database: "tieba",
+    database: "mylog",
   };
 }
 

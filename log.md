@@ -1,6 +1,6 @@
 # 记录
 
-## 一、初始化
+## 一、初始化与技术介绍
 
 ### 初始化
 
@@ -77,3 +77,81 @@ User.hasMany(Blog, {
 ### inspect 调试
 
 ### 404 页面
+
+### jwt 介绍
+
+1. 流程
+   jwt 会将用户信息(类似 session 中的信息)加密后返回给客户端
+
+   客户端后续每次请求都带此 token，以示当前的用户身份 --> 请求头 Autorization: Bearer xxx
+
+2. 加密过程
+   用户信息与一个密钥进行加密，后续也只有这个密钥能解密
+
+3. jwt vs session
+
+jwt 用户信息存储在客户端，不依赖与 cookie、可跨域
+
+seesion 用户信息储存在服务端（一般 redis），依赖与 cookie、默认不可跨域
+
+### redis
+
+内存数据库
+
+1. 适用场景
+
+登陆信息、广场页(每个用户看到的差不多)
+
+2. 使用：
+
+1)  cache 文件夹中写方法，app 中配置
+2)  此后客户端传来的 cookie 中会有 usersid, 相当于一个 key，通过这个 key 就可以找到对应的用户数据
+
+### 单元测试
+
+1. 安装 jest
+
+## 二、架构设计
+
+### 整体架构
+
+![](/logImg/架构.png)
+
+### 页面和路由
+
+![](/logImg/register.png)
+![](/logImg/login.png)
+![](/logImg/home.png)
+![](/logImg/squre.png)
+![](/logImg/setting.png)
+![](/logImg/person.png)
+
+![](/logImg/页面和路由.png)
+
+### api 设计
+
+#### 用户
+
+1. 登陆
+   登陆 /api/user/login
+2. 注册
+   注册 /api/user/register
+   用户名是否存在 /api/user/register
+3. 设置
+   修改个人信息 /api/user/changeInfo
+   修改个人密码 /api/user/changePassword
+   图片上传 /api/user/upload
+   退出登陆 /api/user/logout
+
+#### 微博
+
+1. 首页
+   ![](/logImg/微博api.png)
+
+### 数据模型设计
+
+![](/logImg/数据模型.png)
+
+## 三、用户接口
+
+1. 简历 users 表
