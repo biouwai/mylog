@@ -12,7 +12,7 @@ const { isProd } = require("./utils/env");
 const { REDIS_CONF } = require("./conf/db");
 // router
 const index = require("./routes/index");
-const users = require("./routes/users");
+const userAPIRouter = require("./routes/api/user");
 const errorViewRouter = require("./routes/view/error");
 
 // error handler
@@ -66,8 +66,8 @@ app.use(async (ctx, next) => {
 });
 
 // routes
+app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods());
 app.use(index.routes(), index.allowedMethods());
-app.use(users.routes(), users.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling
