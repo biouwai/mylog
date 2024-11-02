@@ -5,11 +5,13 @@
 
 const router = require("koa-router")();
 const { isUserExist, register } = require("../../controller/user");
+const userValidate = require("../../validator/user");
+const { genValidator } = require("../../middlewares/validator");
 
 router.prefix("/api/user");
 
 // 用户注册
-router.post("/register", async (ctx, next) => {
+router.post("/register", genValidator(userValidate), async (ctx, next) => {
   const { userName, password, gender } = ctx.request.body;
   // 调用controller层的user的处理函数
   ctx.body = await register({ userName, password, gender });
