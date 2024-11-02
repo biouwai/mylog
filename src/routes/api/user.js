@@ -4,16 +4,18 @@
  */
 
 const router = require("koa-router")();
-const { isUserExist } = require("../../controller/user");
+const { isUserExist, register } = require("../../controller/user");
 
 router.prefix("/api/user");
 
-router.get("/", async (ctx, next) => {
-  ctx.body = {
-    s: "s",
-  };
+// 用户注册
+router.post("/register", async (ctx, next) => {
+  const { userName, password, gender } = ctx.request.body;
+  // 调用controller层的user的处理函数
+  ctx.body = await register({ userName, password, gender });
 });
 
+// 用户名是否存在
 router.post("/isExist", async (ctx, next) => {
   const { userName } = ctx.request.body;
   // 调用controller层的user的处理函数
