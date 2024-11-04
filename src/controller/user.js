@@ -8,6 +8,7 @@ const {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,
   registerFailInfo,
+  loginFailInfo,
 } = require("../model/ErrorModel");
 const { doCrypto } = require("../utils/cryp");
 
@@ -15,7 +16,6 @@ const { doCrypto } = require("../utils/cryp");
  * 判断用户名是否存在
  * @param {string} userName
  */
-
 const isUserExist = async (userName) => {
   const userInfo = await getUserInfo(userName);
   if (userInfo) {
@@ -46,7 +46,25 @@ const register = async ({ userName, password, gender }) => {
   }
 };
 
+/**
+ * 登陆
+ * @param {Object} ctx  ctx
+ * @param {string} userName  用户名
+ * @param {string} password 密码
+ * @returns
+ */
+const login = async ({ ctx, userName, password }) => {
+  const userInfo = await getUserInfo(userName, doCrypto(password));
+  if (userInfo) {
+    ctx.session.userInfo = userInfo;
+    return new SuccessModel();
+  } else {
+    return new ErrorModel(loginFailInfo);
+  }
+};
+
 module.exports = {
-  register,
   isUserExist,
+  register,
+  login,
 };

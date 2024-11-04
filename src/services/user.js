@@ -14,8 +14,10 @@ const { User } = require("../db/model/index");
 const getUserInfo = async (userName, password) => {
   // 查询条件
   const whereOpt = { userName };
+
+  // 登陆接口加上密码
   if (password) {
-    Object.assgin(whereOpt, { password });
+    Object.assign(whereOpt, { password });
   }
 
   // 查询
