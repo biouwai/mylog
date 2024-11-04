@@ -6,14 +6,6 @@ router.get("/", async (ctx, next) => {
   });
 });
 
-router.get("/register", async (ctx, next) => {
-  await ctx.render("register");
-});
-
-router.get("/login", async (ctx, next) => {
-  await ctx.render("login");
-});
-
 router.get("/json", async (ctx, next) => {
   const session = ctx.session;
   if (!session.viewNum) {
