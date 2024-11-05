@@ -33,6 +33,7 @@ const loginRedirect = async (ctx, next) => {
   }
   const url = ctx.url;
   ctx.redirect(`/login?url=${url}`);
+  // ctx.redirect(`/login?url=${encodeURIComponent(url)}`);
 };
 
 module.exports = {
