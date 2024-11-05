@@ -2,7 +2,7 @@
  * @description user接口的相关处理逻辑
  * @author 比欧外
  */
-const { getUserInfo, createUser } = require("../services/user");
+const { getUserInfo, createUser, deleteUser } = require("../services/user");
 const { SuccessModel, ErrorModel } = require("../model/ResModel");
 const {
   registerUserNameExistInfo,
@@ -63,8 +63,23 @@ const login = async ({ ctx, userName, password }) => {
   }
 };
 
+/**
+ * 删除当前用户
+ * @param {string} userName 用户名
+ */
+async function deleteCurUser(userName) {
+  const result = await deleteUser(userName);
+  if (result) {
+    // 成功
+    return new SuccessModel();
+  }
+  // 失败
+  return new ErrorModel(deleteUserFailInfo);
+}
+
 module.exports = {
   isUserExist,
   register,
   login,
+  deleteCurUser,
 };
