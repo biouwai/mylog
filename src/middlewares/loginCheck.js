@@ -4,7 +4,7 @@
  */
 
 const { ErrorModel } = require("../model/ResModel");
-const { loginCheckFailInfo } = require("../model/ErrorModel");
+const { loginCheckFailInfo } = require("../model/ErrorInfo");
 
 /**
  * 登陆API中间件
