@@ -32,7 +32,8 @@
     "koa-views": "^6.2.0",
     "mysql2": "^3.11.3",
     "redis": "^4.7.0",
-    "sequelize": "^6.37.4"
+    "sequelize": "^6.37.4",
+    "xss": "^1.0.15"
   },
   "devDependencies": {
     "jest": "^29.7.0",
