@@ -10,7 +10,7 @@
 
 module.exports = {
   Z_ID: 1,
-  Z_USER_NAME: "zhangsan",
+  Z_USER_NAME: "登陆",
   Z_COOKIE:
     "weibo.sid=AkqeMlGj2jvg7fn43e0hnDW2rbrdkcAY; weibo.sid.sig=RQXlEosIWf1xLovZWty6EU84l1M",
 

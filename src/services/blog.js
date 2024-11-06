@@ -22,7 +22,7 @@ const getBlogList = async ({ userName, pageIndex = 0, pageSize = 10 }) => {
     include: [
       {
         model: User,
-        attribute: ["userName", "nickName", "picture"],
+        attributes: ["userName", "nickName", "picture"],
         where: whereUserOpts,
       },
     ],
@@ -34,8 +34,6 @@ const getBlogList = async ({ userName, pageIndex = 0, pageSize = 10 }) => {
     blog.user = formatUser(user);
     return blog;
   });
-
-  console.log(result, "res-------------------");
 
   return {
     count: result.count,
