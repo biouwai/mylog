@@ -1,6 +1,6 @@
 /**
  * @description 首页 controller
- * @author 双越老师
+ * @author 比欧外
  */
 const xss = require("xss");
 const { createBlog } = require("../services/blog");

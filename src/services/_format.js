@@ -3,7 +3,6 @@
  * @author 比欧外
  */
 
-const { format } = require("mysql2");
 const { DEFAULT_PICTURE } = require("../conf/constant");
 
 /**

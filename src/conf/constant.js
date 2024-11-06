@@ -6,4 +6,5 @@
 module.exports = {
   DEFAULT_PICTURE:
     "https://tse2-mm.cn.bing.net/th/id/OIP-C.ZkoPhpKfJwsvGmpm8RsragHaFp?rs=1&pid=ImgDetMain",
+  PAGE_SIZE: 3,
 };

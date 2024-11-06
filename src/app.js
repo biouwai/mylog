@@ -16,8 +16,10 @@ const { SESSION_SECRET_KEY } = require("./conf/secret");
 // router
 const index = require("./routes/index");
 const userView = require("./routes/view/user");
+const blogView = require("./routes/view/blog");
 const userAPIRouter = require("./routes/api/user");
 const homeAPIRouter = require("./routes/api/blog-home");
+const profileAPIRouter = require("./routes/api/blog-profile");
 const utilsAPIRouter = require("./routes/api/utils");
 const errorViewRouter = require("./routes/view/error");
 
@@ -75,9 +77,11 @@ app.use(async (ctx, next) => {
 // routes
 app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods());
 app.use(homeAPIRouter.routes(), homeAPIRouter.allowedMethods());
+app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods());
 app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods());
 app.use(index.routes(), index.allowedMethods());
 app.use(userView.routes(), userView.allowedMethods());
+app.use(blogView.routes(), blogView.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling

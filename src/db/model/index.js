@@ -12,4 +12,5 @@ Blog.belongsTo(User, {
 
 module.exports = {
   User,
+  Blog,
 };
