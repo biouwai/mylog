@@ -12,7 +12,7 @@ module.exports = {
   Z_ID: 1,
   Z_USER_NAME: "登陆",
   Z_COOKIE:
-    "weibo.sid=AkqeMlGj2jvg7fn43e0hnDW2rbrdkcAY; weibo.sid.sig=RQXlEosIWf1xLovZWty6EU84l1M",
+    "weibo.sid=k6bgtWPzsCFndbN-WT386UsYs4VKmFpm; weibo.sid.sig=zoe5mNW-_i1Egh_eAoTorFuF0SU",
 
   L_ID: 2,
   L_USER_NAME: "lisi",

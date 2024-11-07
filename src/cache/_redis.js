@@ -40,6 +40,7 @@ function get(key) {
 
       if (val === null) {
         resolve(null);
+        return;
       }
 
       try {
@@ -52,7 +53,6 @@ function get(key) {
 
   return promise;
 }
-
 module.exports = {
   set,
   get,
