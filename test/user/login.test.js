@@ -1,6 +1,6 @@
 /**
  * @description user api test
- * @author 双越老师
+ * @author 比欧外
  */
 
 const server = require("../server");

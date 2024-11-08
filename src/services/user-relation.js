@@ -12,7 +12,6 @@ const { formatUser } = require("./_format");
  * @param {number} userId userId
  */
 async function getFollowersByUser(userId) {
-  console.log("关注-----------------------------------");
   const result = await User.findAndCountAll({
     attributes: ["id", "userName", "nickName", "picture"],
     order: [["id", "desc"]],
@@ -46,7 +45,6 @@ async function getFollowersByUser(userId) {
  * @param {number} followerId 被关注人的 id
  */
 async function getUsersByFollower(followerId) {
-  console.log("粉丝-----------------------------------");
   const result = await UserRelation.findAndCountAll({
     order: [["id", "desc"]],
     include: [

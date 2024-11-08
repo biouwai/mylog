@@ -1,0 +1,35 @@
+2024-11-08 15:11:49:   <-- GET /
+2024-11-08 15:11:49: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 10;
+2024-11-08 15:11:49: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`content`, `blog`.`image`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `userRelation`.`id` AS `userRelation.id`, `userRelation`.`userId` AS `userRelation.userId`, `userRelation`.`followerId` AS `userRelation.followerId` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 10 ORDER BY `blog`.`id` DESC LIMIT 0, 3;
+2024-11-08 15:11:49: 粉丝-----------------------------------
+2024-11-08 15:11:49: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`userId` = `user`.`id` WHERE `userRelation`.`followerId` = 10 AND `userRelation`.`userId` != 10;
+2024-11-08 15:11:49: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`userId` = `user`.`id` WHERE `userRelation`.`followerId` = 10 AND `userRelation`.`userId` != 10 ORDER BY `userRelation`.`id` DESC;
+2024-11-08 15:11:49: 关注-----------------------------------
+2024-11-08 15:11:49: Executing (default): SELECT count(`user`.`id`) AS `count` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`followerId` AND `userRelations`.`userId` = 10 AND `userRelations`.`followerId` != 10;
+2024-11-08 15:11:49: Executing (default): SELECT `user`.`id`, `user`.`userName`, `user`.`nickName`, `user`.`picture`, `userRelations`.`id` AS `userRelations.id`, `userRelations`.`userId` AS `userRelations.userId`, `userRelations`.`followerId` AS `userRelations.followerId`, `userRelations`.`createdAt` AS `userRelations.createdAt`, `userRelations`.`updatedAt` AS `userRelations.updatedAt` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`followerId` AND `userRelations`.`userId` = 10 AND `userRelations`.`followerId` != 10 ORDER BY `user`.`id` DESC;
+2024-11-08 15:11:49: GET / - 74ms
+2024-11-08 15:11:49:   --> GET / 200 85ms 12.66kb
+2024-11-08 15:11:49:   <-- GET /css/main.css
+2024-11-08 15:11:49:   <-- GET /css/list.css
+2024-11-08 15:11:49:   <-- GET /css/right.css
+2024-11-08 15:11:49:   <-- GET /javascripts/jquery.caret.js
+2024-11-08 15:11:49:   --> GET /css/main.css 200 9ms 661b
+2024-11-08 15:11:49:   --> GET /css/list.css 200 8ms 548b
+2024-11-08 15:11:49:   <-- GET /javascripts/jquery.atwho.js
+2024-11-08 15:11:49:   <-- GET /xxx.png
+2024-11-08 15:11:49:   --> GET /css/right.css 200 9ms 532b
+2024-11-08 15:11:49:   --> GET /javascripts/jquery.caret.js 200 9ms 12.88kb
+2024-11-08 15:11:49:   --> GET /javascripts/jquery.atwho.js 200 5ms 36.65kb
+2024-11-08 15:11:49: GET /xxx.png - 3ms
+2024-11-08 15:11:49:   --> GET /xxx.png 200 9ms 2.26kb
+2024-11-08 15:12:00:   <-- GET /javascripts/query-object.js
+2024-11-08 15:12:00:   --> GET /javascripts/query-object.js 200 1ms 8.46kb
+2024-11-08 15:12:00:   <-- GET /xxx.png
+2024-11-08 15:12:00: GET /xxx.png - 2ms
+2024-11-08 15:12:00:   --> GET /xxx.png 200 6ms 2.26kb
+2024-11-08 15:12:00:   <-- GET /api/user/getAtList
+2024-11-08 15:12:00: GET /api/user/getAtList - 2ms
+2024-11-08 15:12:00:   --> GET /api/user/getAtList 200 5ms 2.26kb
+2024-11-08 15:12:00:   <-- GET /favicon.ico
+2024-11-08 15:12:00: GET /favicon.ico - 2ms
+

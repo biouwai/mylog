@@ -14,7 +14,6 @@ const { REDIS_CONF } = require("./conf/db");
 const { SESSION_SECRET_KEY } = require("./conf/secret");
 
 // router
-const index = require("./routes/index");
 const userView = require("./routes/view/user");
 const blogView = require("./routes/view/blog");
 const userAPIRouter = require("./routes/api/user");
@@ -81,7 +80,6 @@ app.use(homeAPIRouter.routes(), homeAPIRouter.allowedMethods());
 app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods());
 app.use(squareAPIRouter.routes(), squareAPIRouter.allowedMethods());
 app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods());
-app.use(index.routes(), index.allowedMethods());
 app.use(userView.routes(), userView.allowedMethods());
 app.use(blogView.routes(), blogView.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());

@@ -1,0 +1,4 @@
+2024-11-08 15:11:49:   <-- GET /css/jquery.atwho.css
+2024-11-08 15:11:49:   <-- GET /javascripts/my-ajax.js
+2024-11-08 15:11:49:   --> GET /css/jquery.atwho.css 200 14ms 1.28kb
+2024-11-08 15:11:49:   --> GET /javascripts/my-ajax.js 200 10ms 2.45kb
