@@ -5,6 +5,7 @@
 
 const { formatUser } = require("./_format.js");
 const { User } = require("../db/model/index");
+const { addFollower, deleteFollower } = require("./user-relation.js");
 
 /**
  * 获取用户信息
@@ -49,6 +50,10 @@ const createUser = async ({ userName, password, gender = 3, Nickname }) => {
     gender,
     nickName: Nickname ? Nickname : userName,
   });
+
+  const userId = result.dataValues.id;
+  // 自己关注自己
+  addFollower(userId, userId);
   // 看看数据结果
   return result.dataValues;
 };
@@ -58,11 +63,22 @@ const createUser = async ({ userName, password, gender = 3, Nickname }) => {
  * @param {string} userName 用户名
  */
 async function deleteUser(userName) {
+  // 先取关自己，不然会有relations表的外键关联
+  const userData = await User.findOne({
+    where: {
+      userName,
+    },
+  });
+  const { id } = userData.dataValues;
+  deleteFollower(id, id);
+
+  // 删除操作
   const result = await User.destroy({
     where: {
       userName,
     },
   });
+
   // result 删除的行数
   return result > 0;
 }

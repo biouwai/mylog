@@ -1,6 +1,6 @@
 /**
  * @description 单元测试的用户信息
- * @author 双越老师
+ * @author 比欧外
  */
 
 /**
@@ -9,13 +9,13 @@
  */
 
 module.exports = {
-  Z_ID: 1,
-  Z_USER_NAME: "登陆",
+  Z_ID: 10,
+  Z_USER_NAME: "44",
   Z_COOKIE:
-    "weibo.sid=k6bgtWPzsCFndbN-WT386UsYs4VKmFpm; weibo.sid.sig=zoe5mNW-_i1Egh_eAoTorFuF0SU",
+    "weibo.sid=dXhwSel0SWokAFu2Kx45NNzHudDMw9QZ; weibo.sid.sig=VIfZ3HxR0Sh8leaUYmQHs8BYj64",
 
-  L_ID: 2,
-  L_USER_NAME: "lisi",
+  L_ID: 1,
+  L_USER_NAME: "11",
   L_COOKIE:
-    "weibo.sid=686m0u92zMTCmmSQY85trYv_PScDgpFx; weibo.sid.sig=Za_Oj-wSLFrG5QzQhqQU0YQxOFo",
+    "weibo.sid=76Bb8i3W0RBojH_WqTRMsm6hNPm6QuUU; weibo.sid.sig=2qkGECSc6ob1JfZXSzio56ATkJI",
 };
