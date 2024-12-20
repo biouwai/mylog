@@ -7,6 +7,7 @@ import {
   UserOutline,
   UserSetOutline,
 } from "antd-mobile-icons";
+import "./index.scss";
 
 const MainTabs = () => {
   // 下列key值对应路由，需对照着修改
@@ -36,7 +37,7 @@ const MainTabs = () => {
   const [activeKey, setActiveKey] = useState("");
 
   return (
-    <>
+    <div className="main-tabs">
       <TabBar activeKey={activeKey} onChange={setActiveKey}>
         {tabs.map((item) => (
           <TabBar.Item
@@ -46,7 +47,7 @@ const MainTabs = () => {
           />
         ))}
       </TabBar>
-    </>
+    </div>
   );
 };
 

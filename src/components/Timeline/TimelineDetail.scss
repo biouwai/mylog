@@ -1,0 +1,86 @@
+// 基础颜色变量定义
+$primary-color: #333; // 主色调，示例为蓝色，可按需替换
+$secondary-color: #f3f3f3; // 辅助色，用于背景等部分，营造层次感
+$text-color: #333; // 主要文本颜色
+$sub-text-color: #888; // 次要文本颜色，比如时间显示等部分
+$highlight-color: #ffcc00; // 用于突出显示的颜色，比如悬停时元素变色
+$shadow-color: rgba(0, 0, 0, 0.1); // 阴影颜色
+
+// 基础间距和尺寸变量定义
+$spacing-unit: 10px; // 基础间距单位，方便统一控制元素间隔
+$border-radius-size: 10px; // 圆角尺寸，用于元素的圆角设置
+$card-padding: $spacing-unit * 2; // 卡片内边距
+
+// 整体的时间轴详情容器样式，采用卡片式布局，有渐变背景增加质感
+.timeline-detail {
+  background: linear-gradient(to bottom right, $secondary-color, white);
+  padding: $card-padding;
+  border-radius: $border-radius-size;
+  box-shadow: 0 2px 8px $shadow-color;
+  margin: $spacing-unit;
+  position: relative; // 相对定位，便于标题固定时的定位调整
+
+  // 标题样式，字体更有设计感，加粗并设置合适的间距
+  &-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: $primary-color;
+    margin-bottom: $spacing-unit;
+    text-align: center;
+    text-transform: uppercase; // 转换为大写，更显高级感
+    letter-spacing: 1px; // 增加字间距，提升精致感
+    position: sticky; // 使用 sticky 定位，使其在滚动时能固定住
+    top: 0; // 固定在页面顶部，可根据实际需求调整距离顶部的距离
+    z-index: 10; // 提高层级，确保标题显示在其他内容之上
+    background-color: rgba(255, 255, 255, 0.9); // 给标题添加一个半透明背景，增强可读性
+    backdrop-filter: blur(5px); // 添加模糊效果，更显高级（需浏览器支持）
+    padding: $spacing-unit / 2 $spacing-unit; // 适当内边距
+  }
+
+  // 描述部分样式，有细腻的行高和柔和的颜色
+  &-desciption {
+    font-size: 16px;
+    color: $text-color;
+    line-height: 1.6;
+    margin-bottom: $spacing-unit * 2;
+    text-align: justify; // 两端对齐，让文本排版更美观
+  }
+
+  // 时间轴详情主体部分，每个 item 的外层容器样式，类似卡片形式
+  &-body {
+    background-color: white;
+    padding: $card-padding;
+    border-radius: $border-radius-size;
+    box-shadow: 0 2px 4px $shadow-color;
+    margin-bottom: $spacing-unit;
+    transition: all 0.3s ease; // 添加过渡效果，用于悬停时的交互
+
+    &:hover {
+      transform: translateY(-3px); // 悬停时向上微微移动，增加立体感
+      box-shadow: 0 4px 8px $shadow-color;
+      background-color: $highlight-color;
+
+      // 悬停时内容和日期时间部分的文本颜色变化
+    .timeline-detail-body-content {
+        color: white;
+      }
+    .timeline-detail-body-dateTime {
+        color: white;
+      }
+    }
+
+    // 内容部分样式，字体样式优化
+    &-content {
+      font-size: 16px;
+      color: $text-color;
+      line-height: 1.5;
+      margin-bottom: $spacing-unit;
+    }
+
+    // 日期时间部分样式，字体稍小，颜色较淡
+    &-dateTime {
+      font-size: 14px;
+      color: $sub-text-color;
+    }
+  }
+}
