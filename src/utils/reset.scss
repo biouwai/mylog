@@ -1,0 +1,82 @@
+// 重置盒模型，让元素的宽度和高度计算更符合预期，包含边框和内边距在内
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+// 去除所有元素的 margin 和 padding 默认值
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+figure,
+hr,
+fieldset,
+legend {
+    margin: 0;
+    padding: 0;
+}
+
+// 设置默认的字体相关样式，这里可根据实际项目需求调整字体族、字号等基础设置
+body {
+    font-family: Arial, sans-serif; // 示例字体，可替换为你项目所需字体
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+// 去除列表的默认样式（如圆点、序号等）
+ol,
+ul {
+    list-style: none;
+}
+
+// 去除链接的默认下划线和颜色等样式，方便后续自定义设置
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// 让图片等可替换元素在容器中表现更符合预期，去除默认的底部间隙等问题
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+// 去除表单元素的默认边框、背景等样式，便于统一设计样式
+input,
+textarea,
+button,
+select {
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+// 去除表格的默认边框、间距等样式，方便重新定义表格外观
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+// 去除按钮的默认样式，如默认的圆角、背景色等
+button {
+    cursor: pointer;
+    appearance: none;
+}
