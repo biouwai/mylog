@@ -1,0 +1,113 @@
+// 基础颜色变量定义
+$primary-color: #007bff;
+$text-color: #333;
+$bg-color: #f8f9fa;
+$danger-color: #dc3545;
+$border-radius: 4px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// todo-list-container整体样式
+.todo-list-container {
+    max-width: 400px;
+    background-color: white;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 15px;
+
+    h1.todo-list-title {
+        text-align: center;
+        margin-bottom: 15px;
+        color: $primary-color;
+    }
+
+  .filter-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+
+        button {
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: $border-radius;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+        }
+    }
+
+  .input-section {
+        display: flex;
+        margin-bottom: 15px;
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: $border-radius;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: $border-radius;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+        }
+    }
+
+  .todo-list {
+        list-style-type: none;
+        padding: 0;
+
+        li.todo-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                background-color: #f4f4f4;
+            }
+
+            input[type="checkbox"] {
+                margin-right: 10px;
+            }
+
+            button {
+                background-color: $danger-color;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: $border-radius;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: darken($danger-color, 10%);
+                }
+            }
+
+            &.completed {
+                text-decoration: line-through;
+                color: #999;
+            }
+        }
+    }
+}

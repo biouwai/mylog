@@ -1,0 +1,105 @@
+// 基础颜色变量定义
+$primary-color: #007bff;
+$text-color: #333;
+$bg-color: #f8f9fa;
+$border-radius: 4px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// 全局样式重置与基础设置
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 10px;
+}
+
+// personal-settings-container整体样式
+.personal-settings-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 15px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
+
+// 头像区域样式
+.avatar-section {
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
+  margin-bottom: 20px;
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+}
+
+// 昵称区域样式
+.nickname-section {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  span {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+  }
+}
+
+// 个人介绍区域样式
+.introduction-section {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  span {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+  }
+}
+
+// 编辑按钮样式
+.edit-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}

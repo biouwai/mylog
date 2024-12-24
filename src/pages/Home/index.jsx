@@ -1,5 +1,7 @@
 import { Tabs } from "antd-mobile";
 import Timeline from "../../components/Timeline";
+import Thoughts from "../../components/Thoughts";
+import TodoList from "./TodoList";
 
 const mock = [
   {
@@ -50,10 +52,10 @@ const Follow = () => {
           <Timeline timelineData={mock} />
         </Tabs.Tab>
         <Tabs.Tab title="随想录" key="thoughts">
-          随想录
+          <Thoughts />
         </Tabs.Tab>
         <Tabs.Tab title="待办" key="todos">
-          待办
+          <TodoList />
         </Tabs.Tab>
       </Tabs>
     </div>

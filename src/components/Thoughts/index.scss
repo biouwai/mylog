@@ -1,0 +1,98 @@
+// 基础颜色和尺寸变量定义
+$primary-color: #007bff;
+$text-color: #333;
+$bg-color: #f8f9fa;
+$border-radius: 8px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$left-section-width: 25%; // 左侧部分宽度占比，可按需调整
+
+// 全局样式重置与基础设置
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+// thoughts整体容器样式
+.thoughts {
+  padding: 15px;
+
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
+}
+
+// 单个想法的卡片容器样式
+.thoughts-item {
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  margin-bottom: 15px;
+  display: flex;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+// 左侧用户相关信息区域样式
+.thoughts-item-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  width: $left-section-width;
+  min-width: 100px;
+  border-right: 1px solid #eee;
+
+ .thoughts-item-user-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+ .thoughts-item-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+ .thoughts-item-main-dateTime {
+    color: #999;
+    font-size: 12px;
+  }
+}
+
+// 右侧想法主要内容区域样式
+.thoughts-item-main {
+  width: calc(100% - #{$left-section-width});
+  padding: 15px;
+
+ .thoughts-item-main-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+ .thoughts-item-main-content {
+    margin-bottom: 10px;
+  }
+
+ .thoughts-item-main-picture {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: $border-radius;
+  }
+}
