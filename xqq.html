@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<h1>ToDo List</h1>
+<input type="text" id="todo-input" placeholder="添加一项待办事项...">
+<button id="add-btn">添加</button>
+
+<div>
+    <button onclick="filterTasks('all')">全部</button>
+    <button onclick="filterTasks('completed')">已完成</button>
+    <button onclick="filterTasks('incomplete')">未完成</button>
+</div>
+
+<ul id="todo-list"></ul>
+
+<script>
+    const todoInput = document.getElementById('todo-input');
+    const addBtn = document.getElementById('add-btn');
+    const todoList = document.getElementById('todo-list');
+    let tasks = [];
+
+    function renderTasks(filter = 'all') {
+        todoList.innerHTML = '';
+        const filteredTasks = tasks.filter(task => {
+            if (filter === 'completed') return task.completed;
+            if (filter === 'incomplete') return !task.completed;
+            return true;
+        });
+
+        filteredTasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.classList.add('todo-item');
+            if (task.completed) li.classList.add('completed');
+
+            li.innerHTML = `
+                <input type="checkbox" onchange="toggleTask(${index})" ${task.completed ? 'checked' : ''}>
+                <span>${task.text}</span>
+                <button onclick="deleteTask(${index})">删除</button>
+            `;
+
+            todoList.appendChild(li);
+        });
+    }
+
+    function addTask() {
+        if (todoInput.value.trim() === '') return;
+        tasks.push({ text: todoInput.value, completed: false });
+        todoInput.value = '';
+        renderTasks();
+    }
+
+    function deleteTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    }
+
+    function toggleTask(index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+    }
+
+    function filterTasks(filter) {
+        renderTasks(filter);
+    }
+    
+
+    addBtn.addEventListener('click', addTask);
+</script>
+
+</body>
+</html>
