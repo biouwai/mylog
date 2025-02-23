@@ -1,4 +1,4 @@
-import { createStore } from "../redux";
+import { createStore } from "../redux/index";
 
 const counterReducer = (state = { count: 0 }, action) => {
   switch (action.type) {

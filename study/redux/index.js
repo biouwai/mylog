@@ -1,7 +1,8 @@
+/** redux原理 */
 export const createStore = (reducer) => {
   let currentState;
   currentState = reducer(currentState, { type: "init" });
-  const lisenterList = [];
+  const listenerList = [];
 
   const getState = () => {
     return currentState;
@@ -10,18 +11,18 @@ export const createStore = (reducer) => {
   const dispatch = (action) => {
     // 调用reducer更新state
     currentState = reducer(currentState, action);
-    // 调用lisenter
-    lisenterList.forEach((lisenter) => {
-      lisenter();
+    // 调用listener
+    listenerList.forEach((listener) => {
+      listener();
     });
   };
 
-  const subscribe = (listenter) => {
-    lisenterList.push(listenter);
+  const subscribe = (listener) => {
+    listenerList.push(listener);
 
     return function unsubscribe() {
-      const index = lisenterList.indexOf(listenter);
-      lisenterList.splice(index, 1);
+      const index = listenerList.indexOf(listener);
+      listenerList.splice(index, 1);
     };
   };
 

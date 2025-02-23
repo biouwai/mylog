@@ -1,6 +1,48 @@
+## Redux
+
+```js
+export const createStore = (reducer) => {
+  let currentState;
+  currentState = reducer(currentState, { type: "init" });
+  const listenerList = [];
+
+  const getState = () => {
+    return currentState;
+  };
+
+  const dispatch = (action) => {
+    // 调用reducer更新state
+    currentState = reducer(currentState, action);
+    // 调用listener
+    listenerList.forEach((listener) => {
+      listener();
+    });
+  };
+
+  const subscribe = (listener) => {
+    listenerList.push(listener);
+
+    return function unsubscribe() {
+      const index = listenerList.indexOf(listener);
+      listenerList.splice(index, 1);
+    };
+  };
+
+  return {
+    getState,
+    dispatch,
+    subscribe,
+  };
+};
+```
+
+## React Redux
+
+```js
+// connect.jsx
 import { useEffect, useState } from "react";
 import { useStore } from "./provider";
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 
 // useSelector Hook
 export const useSelector = (selector) => {
@@ -67,3 +109,21 @@ export const connect =
     };
     return ConnectedComponent;
   };
+
+import { createContext, useContext } from "react";
+
+// 创建一个 Context 对象
+const StoreContext = createContext();
+
+// Provider 组件
+export const Provider = ({ store, children }) => {
+  return (
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+  );
+};
+
+// 自定义 Hook，方便在组件中获取 store
+export const useStore = () => {
+  return useContext(StoreContext);
+};
+```
