@@ -7,6 +7,9 @@ import React, {
   useCallback,
 } from "react";
 
+/**
+ * 1.useEffect
+ */
 export const EffectDemo1 = () => {
   /**
    * useEffect
@@ -191,7 +194,7 @@ export function CallbackDemo() {
 }
 
 /**
- * 5.useRef
+ * 4.useRef
  */
 // 重新赋值ref.current不会主动触发页面重新渲染
 export const RefDemo = () => {
@@ -224,7 +227,7 @@ export const RefDemo = () => {
 };
 
 /**
- * 6.useContetx
+ * 5.useContetx
  */
 
 // 需要引入useContetx，createContext两个内容

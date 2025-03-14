@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/MainLayout";
 import Mine from "./pages/Home";
