@@ -1,14 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script type="module" src="study/mini-react/simple.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD 示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        button {
+            margin: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CRUD 示例</h1>
+
+    <!-- 错误提示 -->
+    <div id="errorContainer" class="error-message hidden"></div>
+
+    <!-- 添加/编辑表单 -->
+    <div id="formContainer">
+        <h3 id="formTitle">添加新记录</h3>
+        <form id="itemForm">
+            <input type="hidden" id="itemId" name="id">
+            <label for="name">名称:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="description">描述:</label>
+            <input type="text" id="description" name="description"><br><br>
+            <button type="submit">保存</button>
+            <button type="button" onclick="clearForm()">取消</button>
+        </form>
+    </div>
+
+    <!-- 数据表格 -->
+    <h3>数据列表</h3>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 动态生成内容 -->
+        </tbody>
+    </table>
+
+    <!-- JavaScript -->
+    <script>
+        const API_URL = "http://localhost:8080/api/items"; // 替换为你的后端 API 地址
+
+        // 获取页面元素
+        const errorContainer = document.getElementById("errorContainer");
+        const dataTable = document.querySelector("#data-table tbody");
+        const itemForm = document.getElementById("itemForm");
+        const itemIdInput = document.getElementById("itemId");
+        const nameInput = document.getElementById("name");
+        const descriptionInput = document.getElementById("description");
+
+        // 显示错误提示
+        function showError(message) {
+            errorContainer.textContent = message;
+            errorContainer.classList.remove("hidden");
+        }
+
+        // 隐藏错误提示
+        function hideError() {
+            errorContainer.textContent = "";
+            errorContainer.classList.add("hidden");
+        }
+
+        // 加载数据
+        async function loadData() {
+            try {
+                hideError();
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`加载数据失败: ${response.statusText}`);
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                showError(error.message || "加载数据时发生未知错误");
+            }
+        }
+
+        // 渲染数据到表格
+        function renderData(data) {
+            dataTable.innerHTML = ""; // 清空表格
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.description}</td>
+                    <td>
+                        <button onclick="editItem(${item.id})">编辑</button>
+                        <button onclick="deleteItem(${item.id})">删除</button>
+                    </td>
+                `;
+                dataTable.appendChild(row);
+            });
+        }
+
+        // 添加或更新数据
+        itemForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            hideError();
+
+            const item = {
+                id: itemIdInput.value || undefined,
+                name: nameInput.value,
+                description: descriptionInput.value
+            };
+
+            try {
+                const url =  API_URL;
+                const method = item.id ? "PUT" : "POST";
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(item)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || `保存失败: ${response.statusText}`);
+                }
+
+                clearForm();
+                loadData();
+            } catch (error) {
+                showError(error.message || "保存时发生未知错误");
+            }
+        });
+
+        // 编辑数据
+        async function editItem(id) {
+            try {
+                hideError();
+                const response = await fetch(`${API_URL}/${id}`);
+                if (!response.ok) throw new Error(`无法加载数据: ${response.statusText}`);
+                const item = await response.json();
+
+                itemIdInput.value = item.id;
+                nameInput.value = item.name;
+                descriptionInput.value = item.description;
+
+                document.getElementById("formTitle").textContent = "编辑记录";
+            } catch (error) {
+                showError(error.message || "加载数据时发生未知错误");
+            }
+        }
+
+        // 删除数据
+        async function deleteItem(id) {
+            if (!confirm("确定要删除吗？")) return;
+
+            try {
+                hideError();
+                const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+                if (!response.ok) throw new Error(`删除失败: ${response.statusText}`);
+                loadData();
+            } catch (error) {
+                showError(error.message || "删除时发生未知错误");
+            }
+        }
+
+        // 清空表单
+        function clearForm() {
+            hideError();
+            itemIdInput.value = "";
+            nameInput.value = "";
+            descriptionInput.value = "";
+            document.getElementById("formTitle").textContent = "添加新记录";
+        }
+
+        // 页面加载时初始化数据
+        window.onload = loadData;
+    </script>
+</body>
 </html>
